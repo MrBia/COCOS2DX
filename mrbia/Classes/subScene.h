@@ -10,9 +10,9 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
-    
-    CREATE_FUNC(HelloWorld);
+	bool OnTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
+	void update(float deltaTime);
+    CREATE_FUNC(subScene);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

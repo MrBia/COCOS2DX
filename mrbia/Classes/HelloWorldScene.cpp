@@ -116,6 +116,12 @@ bool HelloWorld::init()
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
     }
+
+	auto touchListener = EventListenerTouchOneByOne::create();
+	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::OnTouchBegan, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+
     return true;
 }
 
@@ -129,10 +135,13 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     exit(0);
 #endif
 
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
+}
 
-
+bool HelloWorld::OnTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
+{
+	auto sceneSubScene = subScene::createScene();
+	//Director::getInstance()->replaceScene(sceneSubScene);
+	Director::getInstance()->replaceScene(TransitionFade::create(0.5, sceneSubScene, Color3B(0, 255, 255)));
+	return true;
 }
