@@ -117,11 +117,12 @@ bool HelloWorld::init()
         this->addChild(sprite, 0);
     }
 
+	// Touch
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::OnTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-
+	scheduleUpdate();
     return true;
 }
 
@@ -145,3 +146,32 @@ bool HelloWorld::OnTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, sceneSubScene, Color3B(0, 255, 255)));
 	return true;
 }
+
+void HelloWorld::update(float deltaTime)
+{
+	
+	static int i = 0;
+	i++;
+	if (i == 10) {
+		i = 0;
+		static int ii = 0;
+		auto scene2 = subScene::createScene();
+		if (ii == 0) {
+			ii++;
+			Director::getInstance()->replaceScene(scene2);
+		}
+		else if (ii == 1) {
+			ii++;
+			//Director::getInstance()->replaceScene(scene2);
+			Director::getInstance()->replaceScene(TransitionFadeDown::create(0.5, scene2));
+		}
+		else if (ii == 2) {
+			ii = 0;
+			//Director::getInstance()->replaceScene(scene2);
+			Director::getInstance()->replaceScene(TransitionFlipX::create(0.5, scene2));
+		}
+	}
+	
+}
+
+

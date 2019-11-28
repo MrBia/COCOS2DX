@@ -37,7 +37,7 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
 	bool OnTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-    // implement the "static create()" method manually
+	void update(float deltaTime);
     CREATE_FUNC(HelloWorld);
 };
 
