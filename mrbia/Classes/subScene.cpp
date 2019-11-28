@@ -14,7 +14,7 @@ Scene* subScene::createScene()
 
 bool subScene::init()
 {
-   
+	static int x = 0;
     if ( !Scene::init() )
     {
         return false;
@@ -22,12 +22,13 @@ bool subScene::init()
 
 	auto visibaleSize = Director::getInstance()->getVisibleSize();
 
-	auto sprite = Sprite::create("meo.jpg");
+	sprite = Sprite::create("meo.jpg");
 	if (sprite == nullptr) {
 		printf("error loadding %s", "meo.jpg");
 	}
 	else {
-		sprite->setPosition(Vec2(visibaleSize.width / 2, visibaleSize.height / 2));
+		sprite->setScale(0.5);
+		sprite->setPosition(Vec2(x, visibaleSize.height / 2));
 		this->addChild(sprite, 0);
 	}
 	
@@ -36,7 +37,12 @@ bool subScene::init()
 	touchListener->onTouchBegan = CC_CALLBACK_2(subScene::OnTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	
+	/*auto mouseListener = EventListenerMouse::create();
+	mouseListener->onMouseDown = CC_CALLBACK_1(subScene::OnMouseDown, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);*/
+
+
+
 	scheduleUpdate();
     return true;
 }
@@ -46,36 +52,25 @@ bool subScene::OnTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
 	auto scene1 = HelloWorld::createScene();
 	//Director::getInstance()->replaceScene(scene1);
 	//Director::getInstance()->replaceScene(TransitionFlipX::create(2, scene1));
-	Director::getInstance()->replaceScene(TransitionSlideInT::create(1, scene1));
+	//Director::getInstance()->replaceScene(TransitionSlideInT::create(1, scene1));
+	
+	Vx = touch->getLocation().x - sprite->getPosition().x;
+	Vy = touch->getLocation().y - sprite->getPosition().y;
+
+	return false;
+}
+
+bool subScene::OnMouseDown(cocos2d::Event * event)
+{
+	EventMouse* e = (EventMouse*)event;
+	
+	sprite->setPosition(Vec2(e->getLocation().x, e->getLocation().y));
 	return false;
 }
 
 void subScene::update(float deltaTime)
 {
-	
-
-	static int j = 0;
-	j++;
-	if (j == 10) {
-		j = 0;
-		auto scene1 = HelloWorld::createScene();
-		static int jj = 0;
-		auto scene2 = subScene::createScene();
-		if (jj == 0) {
-			jj++;
-			Director::getInstance()->replaceScene(scene1);
-		}
-		else if (jj == 1) {
-			jj++;
-			//Director::getInstance()->replaceScene(scene1);
-			Director::getInstance()->replaceScene(TransitionFadeDown::create(0.5, scene1));
-		}
-		else if (jj == 2) {
-			jj = 0;
-			//Director::getInstance()->replaceScene(scene1);
-			Director::getInstance()->replaceScene(TransitionFlipX::create(0.5, scene1));
-		}
-	}
+	sprite->setPosition(Vec2(sprite->getPosition().x + Vx*deltaTime, sprite->getPosition().y + Vy*deltaTime));
 }
 
 

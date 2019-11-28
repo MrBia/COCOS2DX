@@ -163,12 +163,12 @@ void HelloWorld::update(float deltaTime)
 		else if (ii == 1) {
 			ii++;
 			//Director::getInstance()->replaceScene(scene2);
-			Director::getInstance()->replaceScene(TransitionFadeDown::create(0.5, scene2));
+			Director::getInstance()->replaceScene(TransitionFadeDown::create(0.05, scene2));
 		}
 		else if (ii == 2) {
 			ii = 0;
 			//Director::getInstance()->replaceScene(scene2);
-			Director::getInstance()->replaceScene(TransitionFlipX::create(0.5, scene2));
+			Director::getInstance()->replaceScene(TransitionFlipX::create(0.05, scene2));
 		}
 	}
 	

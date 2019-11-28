@@ -6,12 +6,17 @@
 
 class subScene : public cocos2d::Scene
 {
+private:
+	cocos2d::Sprite *sprite;
+	int Vx;
+	int Vy;
 public:
     static cocos2d::Scene* createScene();
 
-    virtual bool init();
+    virtual bool init() override;
 	bool OnTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-	void update(float deltaTime);
+	bool OnMouseDown(cocos2d::Event *event);
+	void update(float deltaTime) override;
     CREATE_FUNC(subScene);
 };
 
