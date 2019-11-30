@@ -60,16 +60,17 @@ bool subScene::OnTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
 	return false;
 }
 
-bool subScene::OnMouseDown(cocos2d::Event * event)
-{
-	EventMouse* e = (EventMouse*)event;
-	
-	sprite->setPosition(Vec2(e->getLocation().x, e->getLocation().y));
-	return false;
-}
+//bool subScene::OnMouseDown(cocos2d::Event * event)
+//{
+//	EventMouse* e = (EventMouse*)event;
+//	
+//	sprite->setPosition(Vec2(e->getLocation().x, e->getLocation().y));
+//	return false;
+//}
 
 void subScene::update(float deltaTime)
 {
+	log("%d\n", Vx);
 	sprite->setPosition(Vec2(sprite->getPosition().x + Vx*deltaTime, sprite->getPosition().y + Vy*deltaTime));
 }
 

@@ -15,7 +15,7 @@ public:
 
     virtual bool init() override;
 	bool OnTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-	bool OnMouseDown(cocos2d::Event *event);
+	//bool OnMouseDown(cocos2d::Event *event);
 	void update(float deltaTime) override;
     CREATE_FUNC(subScene);
 };
