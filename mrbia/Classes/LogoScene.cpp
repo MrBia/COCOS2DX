@@ -1,5 +1,5 @@
 #include "LogoScene.h"
-
+#include<math.h>
 
 
 LogoScene::LogoScene()
@@ -18,6 +18,7 @@ cocos2d::Scene* LogoScene::createScene() {
 bool LogoScene::init() {
 	VecBeeX = 0;
 	VecBeeY = 0;
+	alpha = 0;
 	
 	if (!Scene::init()) {
 		return false;
@@ -77,14 +78,29 @@ bool LogoScene::init() {
 }
 
 bool LogoScene::OnTouchBegan(Touch* touch, Event* event) {
+
 	VecBeeX = touch->getLocation().x - bee->getPosition().x;
 	VecBeeY = touch->getLocation().y - bee->getPosition().y;
 
-	//mySprite->setPosition(Vec2(mySprite->getPosition().x + VecBeeX*0.1, mySprite->getPosition().y + VecBeeY*0.1));
+	alpha = atan((touch->getLocation().y - bee->getPosition().y) / (touch->getLocation().x - bee->getPosition().x))*(180/M_PI);
+	log("%f", alpha);
+	
+	float alpha1;
+	if (touch->getLocation().x < bee->getPosition().x) {
+		alpha1 = 180 + (90 - alpha);
+	}
+	else {
+		alpha1 = 90 - alpha;
+	}
+	auto rota = RotateTo::create(0.05, alpha1);
+	bee->runAction(rota);
+
 	return false;
 }
 
 void LogoScene::update(float deltaTime) {
+
+
 	bee->setPosition(Vec2(bee->getPosition().x + VecBeeX*deltaTime, bee->getPosition().y + VecBeeY*deltaTime));
 	log("%d\n", VecBeeY);
 }

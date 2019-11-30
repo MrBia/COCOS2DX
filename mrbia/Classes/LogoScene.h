@@ -11,6 +11,7 @@ private:
 	Sprite* mySprite;
 	int VecBeeX;
 	int VecBeeY;
+	float alpha;
 public:
 	LogoScene();
 	~LogoScene();
