@@ -28,6 +28,7 @@ bool LogoScene::init() {
 	bee->setScale(0.5);
 	this->addChild(bee);
 
+	// action bee
 	cocos2d::Vector<cocos2d::SpriteFrame*> animateFrames;
 	animateFrames.pushBack(SpriteFrame::create("bee1.png", cocos2d::Rect(0, 0, 150, 150)));
 	animateFrames.pushBack(SpriteFrame::create("bee2.png", cocos2d::Rect(0, 0, 150, 150)));
@@ -39,20 +40,37 @@ bool LogoScene::init() {
 
 	// sprite
 	mySprite = Sprite::create("mySprite.png");
-	mySprite->setPosition(50, 50);
+	mySprite->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height);
 	this->addChild(mySprite);
 
-	auto scale = ScaleBy::create(2, 0.5);
-	auto move = MoveTo::create(2, Vec2(100, 100));
-	auto sequence = Sequence::create(scale, move, nullptr);
-	mySprite->runAction(move);
+	// load sprite frame
+	auto spriteCache = SpriteFrameCache::getInstance();
+	spriteCache->addSpriteFramesWithFile("ong.plist");
+	auto player1 = Sprite::createWithSpriteFrameName("bee1.png");
+	auto player2 = Sprite::createWithSpriteFrameName("bee2.png");
+	auto player3 = Sprite::createWithSpriteFrameName("bee3.png");
+	
 
+	// touch began
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(LogoScene::OnTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	
 
+	// bee move
+	auto rotate1 = RotateBy::create(0.1, 90);
+	auto move1 = MoveBy::create(2, Vec2(Director::getInstance()->getVisibleSize().width/2, 0));
+	auto rotate2 = RotateBy::create(0.1, -90);
+	auto move2 = MoveBy::create(2, Vec2(0, Director::getInstance()->getVisibleSize().height / 2));
+	auto rotate3 = RotateBy::create(0.1, -90);
+	auto move3 = MoveBy::create(2, Vec2(-Director::getInstance()->getVisibleSize().width / 2, 0));
+	auto rotate4 = RotateBy::create(0.1, -90);
+	auto move4 = MoveBy::create(2, Vec2(0, -Director::getInstance()->getVisibleSize().height / 2));
+	auto seq = Sequence::create(rotate1, move1, rotate2, move2, rotate3, move3, rotate4, move4, nullptr);
+	bee->runAction(seq);
+	//bee->runAction(seq->reverse());
+	
+	// update
 	scheduleUpdate();
 
 	return true;
@@ -63,6 +81,8 @@ bool LogoScene::OnTouchBegan(Touch* touch, Event* event) {
 	VecBeeY = touch->getLocation().y - bee->getPosition().y;
 
 	//bee->setPosition(Vec2(VecBeeX, VecBeeY));
+
+	
 
 	/*static int i = 0;
 	if (i == 0) {
@@ -80,46 +100,5 @@ bool LogoScene::OnTouchBegan(Touch* touch, Event* event) {
 }
 
 void LogoScene::update(float deltaTime) {
-	static int i = 1;
-	/*if (i == 0) {
-		auto scale = ScaleBy::create(2, 0.5);
-		mySprite->runAction(scale);
-		i = 1;
-	}*/
 
-	/*auto scale = ScaleBy::create(2, 3);
-
-	auto scale1 = MoveBy::create(2, Vec2(50, 50));
-
-	auto sequence = Sequence::create(scale, scale1);
-
-	if (i == 1) {
-		mySprite->runAction(sequence);
-		i = 0;
-	}*/
-	
-
-	/*static int i = 0;
-	if (mySprite->getScale() > 2) {
-		i = 0;
-	}
-	else if (mySprite->getScale() < 0) {
-		i = 1;
-	}
-	
-	if (i == 0) {
-		auto scale = ScaleTo::create(deltaTime, 0.9);
-		mySprite->runAction(scale);
-	}
-	else if (i == 1) {
-		auto scale = ScaleTo::create(deltaTime, 1.1);
-		mySprite->runAction(scale);
-	}*/
-	
-
-	/*if (bee->getPosition().x != VecBeeX && bee->getPosition().y != VecBeeY) {
-		auto moveTo = MoveTo::create(deltaTime, Vec2(bee->getPosition().x + VecBeeX * deltaTime, bee->getPosition().y + VecBeeY * deltaTime));
-		bee->runAction(moveTo);
-	}*/
-	
 }
