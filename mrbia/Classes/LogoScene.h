@@ -9,9 +9,15 @@ class LogoScene :
 private:
 	Sprite* bee;
 	Sprite* mySprite;
+	Sprite* honey;
+	Sprite* logoBee;
+	Sprite* coin;
 	int VecBeeX;
 	int VecBeeY;
+	int score;
 	float alpha;
+	Label *labelScore;
+
 public:
 	LogoScene();
 	~LogoScene();

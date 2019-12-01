@@ -25,6 +25,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\LogoScene.cpp" />
+    <ClCompile Include="..\Classes\IItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -40,6 +41,7 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\LogoScene.h" />
+    <ClInclude Include="..\Classes\IItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
