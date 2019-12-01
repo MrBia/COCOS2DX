@@ -5,6 +5,7 @@
 #include "subScene.h"
 #include "LogoScene.h"
 #include "NewGame.h"
+#include "MainMenuScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -102,7 +103,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //auto scene = HelloWorld::createScene();
 	//auto scene = subScene::createScene();
 	//auto scene = LogoScene::createScene();
-	auto scene = NewGame::createNewGame();
+	//auto scene = NewGame::createNewGame();
+	auto scene = MainMenuScene::createMainMenu();
+
 
     // run
     director->runWithScene(scene);
