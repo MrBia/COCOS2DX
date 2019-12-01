@@ -1,11 +1,18 @@
 #pragma once
-class IItem
+#include "OObject.h"
+#include<cstdlib>
+
+class IItem : public OObject
 {
-	int x;
-	int y;
+private:
+	bool state;
 public:
-	int getX();
-	int getY();
+	bool getState();
+	void move();
+	void DoStart();
+	int getMoney();
+	void setMoney(int money);
+	IItem(int width, int height);
 	IItem();
 	~IItem();
 };

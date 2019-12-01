@@ -1,6 +1,6 @@
 #include "LogoScene.h"
 #include<math.h>
-#include"IItem.h"
+
 
 LogoScene::LogoScene()
 {
@@ -97,6 +97,10 @@ bool LogoScene::init() {
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	
+	// create Item
+
+
+
 	// update
 	scheduleUpdate();
 
