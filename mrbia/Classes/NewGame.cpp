@@ -4,18 +4,13 @@
 
 NewGame::NewGame()
 {
-	// get size screen
-	auto size_screen = Director::getInstance()->getVisibleSize();
-	w_screen = size_screen.width;
-	h_screen = size_screen.height;
-
 	// create bee
-	this->O_bee = new Bee(w_screen, h_screen);
+	this->O_bee = new Bee(this);
 	
 	// create list item
 	OObject* item;
 	for (int i = 0; i < this->numItem; i++) {
-		item = new IItem(w_screen, h_screen);
+		item = new IItem(this);
 		this->listItem.push_back(item);
 	}
 
@@ -46,34 +41,6 @@ bool NewGame::init()
 		return false;
 	}
 
-
-	// bee
-	spriteBee = Sprite::create();
-	spriteBee->setPosition(O_bee->getX(), O_bee->getY());
-	spriteBee->setScale(0.5);
-	this->addChild(spriteBee);
-
-	// action bee
-	cocos2d::Vector<cocos2d::SpriteFrame*> animateFrames;
-	animateFrames.pushBack(SpriteFrame::create("bee1.png", cocos2d::Rect(0, 0, 150, 150)));
-	animateFrames.pushBack(SpriteFrame::create("bee2.png", cocos2d::Rect(0, 0, 150, 150)));
-	animateFrames.pushBack(SpriteFrame::create("bee3.png", cocos2d::Rect(0, 0, 150, 150)));
-
-	auto animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
-	auto animate = Animate::create(animation);
-	spriteBee->runAction(RepeatForever::create(animate));
-
-
-	// list Item
-	spriteItem = Sprite::create("oo.png");
-	spriteItem->setScale(0.05);
-	std::list<OObject*>::iterator i;
-	for (i = listItem.begin(); i != listItem.end(); i++) {
-		auto sprite = Sprite::create("oo.png");
-		sprite->setPosition((**i).getX(), (**i).getY());
-		sprite->setScale(0.05);
-		this->addChild(sprite);
-	}
 
 	// coin
 	spriteCoin = Sprite::create();
@@ -113,20 +80,12 @@ bool NewGame::init()
 
 bool NewGame::OnTouchBegan(Touch * touch, Event * event)
 {
-	// score update
-	int money = O_bee->getMoney();
-	money++;
-	CCString *tempScore = CCString::createWithFormat("%i", money);
-	labelScore->setString(tempScore->getCString());
-	O_bee->setMoney(money);
-
 	// Vector of bee
 	VecX = touch->getLocation().x - O_bee->getX();
 	VecY = touch->getLocation().y - O_bee->getY();
 
 	// alpha angle
 	float alpha = atan((touch->getLocation().y - O_bee->getY()) / (touch->getLocation().x - O_bee->getX()))*(180 / M_PI);
-	/*log("%f", alpha);*/
 
 	float alpha1;
 	if (touch->getLocation().x < O_bee->getX()) {
@@ -137,16 +96,49 @@ bool NewGame::OnTouchBegan(Touch * touch, Event * event)
 	}
 
 	// rotate
+	/*log("%f", alpha1);*/
 	auto rota = RotateTo::create(0.05, alpha1);
-	spriteBee->runAction(rota);
-
+	O_bee->getSprite()->runAction(rota);
+	
 	return false;
 }
 
 
+
 void NewGame::update(float deltaTime)
 {
-	spriteBee->setPosition(Vec2(O_bee->getX() + VecX * deltaTime, O_bee->getY() + VecY * deltaTime));
+	// update bee position
+	O_bee->getSprite()->setPosition(Vec2(O_bee->getX() + VecX * deltaTime, O_bee->getY() + VecY * deltaTime));
 	O_bee->setX(O_bee->getX() + VecX * deltaTime);
 	O_bee->setY(O_bee->getY() + VecY * deltaTime);
+
+	// update item position
+	std::list<OObject*>::iterator i;
+	for (i = listItem.begin(); i != listItem.end(); i++) {
+		(**i).move();
+		if ((**i).getY() < -10) (**i).setY(Director::getInstance()->getVisibleSize().height + 20);
+		if (checkDistance(O_bee, *i)) {
+			// score update
+			int money = O_bee->getMoney();
+			money++;
+			CCString *tempScore = CCString::createWithFormat("%i", money);
+			labelScore->setString(tempScore->getCString());
+			O_bee->setMoney(money);
+
+			(**i).setY(Director::getInstance()->getVisibleSize().height + 20);
+		}
+	}
+
+}
+
+bool NewGame::checkDistance(OObject * bee, OObject * item)
+{
+	if (distance(bee->getX(), bee->getY(), item->getX(), item->getY()) < this->dis) return true;
+	return false;
+}
+
+float NewGame::distance(float x1, float y1, float x2, float y2)
+{
+	float dis = sqrt(abs(x2 - x1) * abs(x2 - x1) + abs(y2 - y1) * abs(y2 - y1));
+	return dis;
 }

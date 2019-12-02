@@ -12,7 +12,7 @@ public:
 	void DoStart();
 	int getMoney();
 	void setMoney(int money);
-	IItem(int width, int height);
+	IItem(Scene *scene);
 	IItem();
 	~IItem();
 };

@@ -1,5 +1,6 @@
 #include "SettingScene.h"
-
+#include "MenuSound.h"
+#include "MenuAbout.h"
 
 SettingScene::SettingScene()
 {
@@ -39,10 +40,11 @@ bool SettingScene::init()
 
 void SettingScene::menuSound(Ref * pSender)
 {
-
+	Director::getInstance()->replaceScene(MenuSound::createMenuSoundScene());
 }
 
 void SettingScene::menuAbout(Ref * pSender)
 {
+	Director::getInstance()->replaceScene(MenuAbout::createMenuAboutScene());
 }
 

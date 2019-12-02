@@ -31,6 +31,8 @@
     <ClCompile Include="..\Classes\IItem.cpp" />
     <ClCompile Include="..\Classes\Bee.cpp" />
     <ClCompile Include="..\Classes\SettingScene.cpp" />
+    <ClCompile Include="..\Classes\MenuSound.cpp" />
+    <ClCompile Include="..\Classes\MenuAbout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -52,6 +54,8 @@
     <ClInclude Include="..\Classes\IItem.h" />
     <ClInclude Include="..\Classes\Bee.h" />
     <ClInclude Include="..\Classes\SettingScene.h" />
+    <ClInclude Include="..\Classes\MenuSound.h" />
+    <ClInclude Include="..\Classes\MenuAbout.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

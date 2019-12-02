@@ -14,7 +14,7 @@ public:
 	void move();
 	void DoStart();
 
-	Bee(int width, int height);
+	Bee(Scene* scene);
 	Bee();
 	~Bee();
 };

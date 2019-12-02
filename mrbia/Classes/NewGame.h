@@ -9,23 +9,24 @@ USING_NS_CC;
 class NewGame : public cocos2d::Scene
 {
 private:
-	Sprite *spriteBee;
-	Sprite *spriteItem;
 	Sprite *spriteCoin;
 	Label *labelScore;
 	
 	OObject* O_bee;
+	std::list<OObject*> listItem;
 	int numItem = 5;
 	int w_screen;
 	int h_screen;
 	int VecX;
 	int VecY;
-	std::list<OObject*> listItem;
+	int dis = 20;
 public:
 	static cocos2d::Scene* createNewGame();
 	virtual bool init() override;
 	void update(float deltaTime) override;
 	bool OnTouchBegan(Touch* touch, Event* event);
+	bool checkDistance(OObject *bee, OObject *item);
+	float distance(float x1, float y1, float x2, float y2);
 	NewGame();
 	~NewGame();
 

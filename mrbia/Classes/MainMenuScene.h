@@ -17,6 +17,7 @@ public:
 	bool OnTouchBegan(Touch* touch, Event* event);
 	void menuCloseCallback(Ref* pSender);
 	void menuSetting(Ref* pSender);
+	void playGame(Ref* pSender);
 	MainMenuScene();
 	~MainMenuScene();
 	CREATE_FUNC(MainMenuScene);

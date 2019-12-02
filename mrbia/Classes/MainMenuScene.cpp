@@ -32,7 +32,7 @@ bool MainMenuScene::init()
 	endItem->setPosition(200, 400);
 
 	// Menu Item Play
-	itemPlay = MenuItemFont::create("Play", nullptr);
+	itemPlay = MenuItemFont::create("Play", CC_CALLBACK_1(MainMenuScene::playGame, this));
 	itemPlay->setPosition(200, 300);
 
 	// Menu Item Exit
@@ -87,5 +87,10 @@ void MainMenuScene::menuCloseCallback(Ref * pSender)
 void MainMenuScene::menuSetting(Ref * pSender)
 {
 	Director::getInstance()->replaceScene(SettingScene::createSettingScene());
+}
+
+void MainMenuScene::playGame(Ref * pSender)
+{
+	Director::getInstance()->replaceScene(NewGame::createNewGame());
 }
 

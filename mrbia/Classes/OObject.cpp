@@ -2,42 +2,49 @@
 
 
 
-void OObject::setX(int x)
+void OObject::setX(float x)
 {
 	this->x = x;
 }
 
-void OObject::setY(int y)
+void OObject::setY(float y)
 {
 	this->y = y;
 }
 
-int OObject::getX()
+float OObject::getX()
 {
 	return this->x;
 }
 
-int OObject::getY()
+float OObject::getY()
 {
 	return this->y;
 }
 
-int OObject::getWidth()
+void OObject::setSprite(Sprite * sprite)
 {
-	return this->widthScreen;
+	this->sprite = sprite;
 }
 
-int OObject::getHeight()
+Sprite * OObject::getSprite()
 {
-	return this->heightScreen;
+	return this->sprite;
 }
 
-OObject::OObject(int width, int height)
+
+Scene * OObject::getScene()
+{
+	return this->scene;
+}
+
+
+
+OObject::OObject(Scene* scene)
 {
 	this->x = 0;
 	this->y = 0;
-	this->widthScreen = width;
-	this->heightScreen = height;
+	this->scene = scene;
 }
 
 OObject::OObject()
