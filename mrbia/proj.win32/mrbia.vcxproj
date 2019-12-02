@@ -150,12 +150,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Bee.cpp" />
+    <ClCompile Include="..\Classes\Dog.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\IItem.cpp" />
     <ClCompile Include="..\Classes\LogoScene.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
-    <ClCompile Include="..\Classes\MenuAbout.cpp" />
-    <ClCompile Include="..\Classes\MenuSound.cpp" />
     <ClCompile Include="..\Classes\NewGame.cpp" />
     <ClCompile Include="..\Classes\OObject.cpp" />
     <ClCompile Include="..\Classes\SettingScene.cpp" />
@@ -165,12 +164,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Bee.h" />
+    <ClInclude Include="..\Classes\Dog.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\IItem.h" />
     <ClInclude Include="..\Classes\LogoScene.h" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
-    <ClInclude Include="..\Classes\MenuAbout.h" />
-    <ClInclude Include="..\Classes\MenuSound.h" />
     <ClInclude Include="..\Classes\NewGame.h" />
     <ClInclude Include="..\Classes\OObject.h" />
     <ClInclude Include="..\Classes\SettingScene.h" />

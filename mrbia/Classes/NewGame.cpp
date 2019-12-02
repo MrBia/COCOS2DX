@@ -14,6 +14,9 @@ NewGame::NewGame()
 		this->listItem.push_back(item);
 	}
 
+	// create dog
+	dog = new Dog(this);
+
 	// Vector
 	VecX = 0;
 	VecY = 0;

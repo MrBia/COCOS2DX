@@ -25,72 +25,48 @@ bool MainMenuScene::init()
 
 	// label Menu
 	labelMenu = Label::create("MENU", "Arial", 30);
-	//this->addChild(labelMenu);
+	//this->setPosition(230, 250);
+	//this->addChild(labelMenu, -1);
 
-	// end Item
-	endItem = MenuItemLabel::create(labelMenu, nullptr);
-	endItem->setPosition(200, 400);
-
-	// Menu Item Play
-	itemPlay = MenuItemFont::create("Play", CC_CALLBACK_1(MainMenuScene::playGame, this));
-	itemPlay->setPosition(200, 300);
-
-	// Menu Item Exit
-	itemExit = MenuItemFont::create("Exit", CC_CALLBACK_1(MainMenuScene::menuCloseCallback, this));
-	itemExit->setPosition(200, 250);
-
-	// Menu Item Setting
-	auto itemSetting = MenuItemFont::create("Setting", CC_CALLBACK_1(MainMenuScene::menuSetting, this));
-	itemSetting->setPosition(200, 200);
-
-	// Menu
-	myMenu = Menu::create(itemPlay, itemExit, itemSetting, nullptr);
-	myMenu->setPosition(0, 0);
-	this->addChild(myMenu);
-
-	auto button = ui::Button::create("play_normal.png", "play_pressed.png");
-	button->setPosition(Vec2(200, 200));
-	button->setTitleText("text");
+	auto button = ui::Button::create("btn_Play.png", "");
+	button->setPosition(Vec2(230, 200));
+	button->setScale(0.2);
 
 	button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
 		switch (type) {
 		case ui::Widget::TouchEventType::BEGAN: {
-			//Director::getInstance()->replaceScene(NewGame::createNewGame());
+			Director::getInstance()->replaceScene(NewGame::createNewGame());
 			break; 
 		}
 		case ui::Widget::TouchEventType::ENDED: break;
 		default: break;
 		}
 	});
-	//this->addChild(button);
+	this->addChild(button);
 	
+	auto btn_Setting = ui::Button::create("btn_Setting.png", "");
+	btn_Setting->setPosition(Vec2(230, 150));
+	btn_Setting->setScale(0.2);
+	
+	btn_Setting->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN: {
+			Director::getInstance()->replaceScene(SettingScene::createSettingScene());
+			break;
+		}
+		case ui::Widget::TouchEventType::ENDED: {
+			break;
+		}
+		default:
+			break;
+		}
+	});
+
+	this->addChild(btn_Setting);
 
 
-	// on touch began
-	auto touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(MainMenuScene::OnTouchBegan, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	return true;
-}
-
-bool MainMenuScene::OnTouchBegan(Touch * touch, Event * event)
-{
-	return false;
-}
-
-void MainMenuScene::menuCloseCallback(Ref * pSender)
-{
-	exit(0);
-}
-
-void MainMenuScene::menuSetting(Ref * pSender)
-{
-	Director::getInstance()->replaceScene(SettingScene::createSettingScene());
-}
-
-void MainMenuScene::playGame(Ref * pSender)
-{
-	Director::getInstance()->replaceScene(NewGame::createNewGame());
 }
 

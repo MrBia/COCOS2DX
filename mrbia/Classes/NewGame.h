@@ -4,6 +4,7 @@
 #include "OObject.h"
 #include "Bee.h"
 #include "IItem.h"
+#include "Dog.h"
 
 USING_NS_CC;
 class NewGame : public cocos2d::Scene
@@ -14,6 +15,8 @@ private:
 	
 	OObject* O_bee;
 	std::list<OObject*> listItem;
+	OObject* dog;
+
 	int numItem = 5;
 	int w_screen;
 	int h_screen;
