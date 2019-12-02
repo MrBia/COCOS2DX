@@ -1,5 +1,6 @@
 #include "MainMenuScene.h"
 #include "NewGame.h"
+#include "SettingScene.h"
 
 MainMenuScene::MainMenuScene()
 {
@@ -35,13 +36,17 @@ bool MainMenuScene::init()
 	itemPlay->setPosition(200, 300);
 
 	// Menu Item Exit
-	itemExit = MenuItemFont::create("Exit", nullptr);
+	itemExit = MenuItemFont::create("Exit", CC_CALLBACK_1(MainMenuScene::menuCloseCallback, this));
 	itemExit->setPosition(200, 250);
 
+	// Menu Item Setting
+	auto itemSetting = MenuItemFont::create("Setting", CC_CALLBACK_1(MainMenuScene::menuSetting, this));
+	itemSetting->setPosition(200, 200);
+
 	// Menu
-	myMenu = Menu::create(itemPlay, itemExit, nullptr);
+	myMenu = Menu::create(itemPlay, itemExit, itemSetting, nullptr);
 	myMenu->setPosition(0, 0);
-	//this->addChild(myMenu);
+	this->addChild(myMenu);
 
 	auto button = ui::Button::create("play_normal.png", "play_pressed.png");
 	button->setPosition(Vec2(200, 200));
@@ -57,7 +62,7 @@ bool MainMenuScene::init()
 		default: break;
 		}
 	});
-	this->addChild(button);
+	//this->addChild(button);
 	
 
 
@@ -72,5 +77,15 @@ bool MainMenuScene::init()
 bool MainMenuScene::OnTouchBegan(Touch * touch, Event * event)
 {
 	return false;
+}
+
+void MainMenuScene::menuCloseCallback(Ref * pSender)
+{
+	exit(0);
+}
+
+void MainMenuScene::menuSetting(Ref * pSender)
+{
+	Director::getInstance()->replaceScene(SettingScene::createSettingScene());
 }
 
