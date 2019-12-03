@@ -20,6 +20,11 @@ NewGame::NewGame()
 	// Vector
 	VecX = 0;
 	VecY = 0;
+
+	// distance move
+	speed_bee = 0;
+	tlx = 0;
+	tly = 0;
 }
 
 
@@ -27,10 +32,10 @@ NewGame::~NewGame()
 {
 	delete this->O_bee;
 
-	std::list<OObject*>::iterator i = listItem.begin();
+	/*std::list<OObject*>::iterator i = listItem.begin();
 	while (i != listItem.end()) {
 		delete *i;
-	}
+	}*/
 }
 
 cocos2d::Scene * NewGame::createNewGame()
@@ -83,6 +88,9 @@ bool NewGame::init()
 
 bool NewGame::OnTouchBegan(Touch * touch, Event * event)
 {
+	// speed of bee
+	speed_bee = 0.9;
+
 	// Vector of bee
 	VecX = touch->getLocation().x - O_bee->getX();
 	VecY = touch->getLocation().y - O_bee->getY();
@@ -98,8 +106,28 @@ bool NewGame::OnTouchBegan(Touch * touch, Event * event)
 		alpha1 = 90 - alpha;
 	}
 
+
+	// x move   y move
+	tlx = speed_bee * cos(alpha*(M_PI/180));
+	tly = speed_bee * sin(alpha*(M_PI / 180));
+
+	if (tly > 0 && touch->getLocation().x < O_bee->getX() && touch->getLocation().y < O_bee->getY()) {
+		tlx = -tlx;
+		tly = -tly;
+	}
+	else if (tly < 0) {
+		if (touch->getLocation().x < O_bee->getX()) {
+			tlx = -tlx;
+			tly = -tly;
+		}
+		else if (touch->getLocation().y < O_bee->getY()) {
+			//tly = -tly;
+		}
+	}
+
+	
+
 	// rotate
-	/*log("%f", alpha1);*/
 	auto rota = RotateTo::create(0.05, alpha1);
 	O_bee->getSprite()->runAction(rota);
 	
@@ -111,9 +139,9 @@ bool NewGame::OnTouchBegan(Touch * touch, Event * event)
 void NewGame::update(float deltaTime)
 {
 	// update bee position
-	O_bee->getSprite()->setPosition(Vec2(O_bee->getX() + VecX * deltaTime, O_bee->getY() + VecY * deltaTime));
-	O_bee->setX(O_bee->getX() + VecX * deltaTime);
-	O_bee->setY(O_bee->getY() + VecY * deltaTime);
+	O_bee->getSprite()->setPosition(Vec2(O_bee->getX() + tlx, O_bee->getY() + tly));
+	O_bee->setX(O_bee->getX() + tlx);
+	O_bee->setY(O_bee->getY() + tly);
 
 	// update item position
 	std::list<OObject*>::iterator i;

@@ -74,7 +74,7 @@ bool SettingScene::init()
 	scrollView = ui::ScrollView::create();
 	scrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
 	scrollView->setContentSize(Size(300, 200));
-	scrollView->setInnerContainerSize(Size(1280, 2500));
+	scrollView->setInnerContainerSize(Size(1280, 400));
 	scrollView->setBounceEnabled(true);
 	scrollView->setPosition(Vec2(100, 100));
 

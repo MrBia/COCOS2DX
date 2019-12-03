@@ -23,6 +23,9 @@ private:
 	int VecX;
 	int VecY;
 	int dis = 20;
+	float speed_bee;
+	float tlx;
+	float tly;
 public:
 	static cocos2d::Scene* createNewGame();
 	virtual bool init() override;
