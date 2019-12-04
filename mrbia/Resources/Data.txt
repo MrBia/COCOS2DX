@@ -1,4 +1,4 @@
-#SPRITE 7
+#SPRITE 9
 ID: 0
 PATH: background.png
 ID: 1
@@ -13,6 +13,10 @@ ID: 5
 PATH: aestroid_dark.png
 ID: 6
 PATH: aestroid_gay_2.png
+ID: 7
+PATH: aestroid_gray.png
+ID: 8
+PATH: 1.png
 #BUTTON 3
 ID: 0
 NORMAL_PATH: play_normal.png

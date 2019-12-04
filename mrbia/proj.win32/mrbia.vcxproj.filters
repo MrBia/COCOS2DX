@@ -33,6 +33,11 @@
     <ClCompile Include="..\Classes\SettingScene.cpp" />
     <ClCompile Include="..\Classes\Dog.cpp" />
     <ClCompile Include="..\Classes\ResourceManager.cpp" />
+    <ClCompile Include="..\Classes\Bullet.cpp" />
+    <ClCompile Include="..\Classes\Rock.cpp" />
+    <ClCompile Include="..\Classes\SpaceShooter.cpp" />
+    <ClCompile Include="..\Classes\Objject.cpp" />
+    <ClCompile Include="..\Classes\GamePlayScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -56,6 +61,11 @@
     <ClInclude Include="..\Classes\SettingScene.h" />
     <ClInclude Include="..\Classes\Dog.h" />
     <ClInclude Include="..\Classes\ResourceManager.h" />
+    <ClInclude Include="..\Classes\Bullet.h" />
+    <ClInclude Include="..\Classes\Rock.h" />
+    <ClInclude Include="..\Classes\SpaceShooter.h" />
+    <ClInclude Include="..\Classes\Objject.h" />
+    <ClInclude Include="..\Classes\GamePlayScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

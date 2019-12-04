@@ -20,7 +20,6 @@ public:
 	Scene* getScene();
 
 
-
 	virtual void move() = 0;
 	virtual void DoStart() = 0;
 	virtual int getMoney() = 0;
