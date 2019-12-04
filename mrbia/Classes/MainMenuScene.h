@@ -6,6 +6,8 @@ USING_NS_CC;
 class MainMenuScene:public cocos2d::Scene
 {
 private:
+	Sprite* G;
+	Sprite* gameloft;
 	Menu* myMenu;
 	Label* labelMenu;
 	MenuItemLabel* endItem;

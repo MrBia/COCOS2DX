@@ -32,6 +32,7 @@
     <ClCompile Include="..\Classes\Bee.cpp" />
     <ClCompile Include="..\Classes\SettingScene.cpp" />
     <ClCompile Include="..\Classes\Dog.cpp" />
+    <ClCompile Include="..\Classes\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -54,6 +55,7 @@
     <ClInclude Include="..\Classes\Bee.h" />
     <ClInclude Include="..\Classes\SettingScene.h" />
     <ClInclude Include="..\Classes\Dog.h" />
+    <ClInclude Include="..\Classes\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

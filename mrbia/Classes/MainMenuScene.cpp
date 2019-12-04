@@ -1,6 +1,7 @@
 #include "MainMenuScene.h"
 #include "NewGame.h"
 #include "SettingScene.h"
+#include "ResourceManager.h"
 
 MainMenuScene::MainMenuScene()
 {
@@ -23,13 +24,28 @@ bool MainMenuScene::init()
 		return false;
 	}
 
-	// label Menu
-	labelMenu = Label::create("MENU", "Arial", 30);
-	//this->setPosition(230, 250);
-	//this->addChild(labelMenu, -1);
+	auto sprite = ResourceManager::getInstance()->loadSpriteById(1);
+	sprite->setPosition(100, 100);
+	this->addChild(sprite);
 
+	// get size
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+
+
+	// Create Logo
+	G = Sprite::create("G.png");
+	G->setScale(0.3);
+	G->setPosition(visibleSize.width/2, visibleSize.height/2);
+	gameloft = Sprite::create("gameloft.png");
+	gameloft->setScale(0.3);
+	gameloft->setPosition(visibleSize.width / 2, visibleSize.height / 2 - 70);
+	this->addChild(G);
+	this->addChild(gameloft);
+
+
+	// btn play
 	auto button = ui::Button::create("btn_Play.png", "");
-	button->setPosition(Vec2(230, 200));
+	button->setPosition(Vec2(visibleSize.width/2, visibleSize.height - 100));
 	button->setScale(0.2);
 
 	button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
@@ -45,7 +61,7 @@ bool MainMenuScene::init()
 	this->addChild(button);
 	
 	auto btn_Setting = ui::Button::create("btn_Setting.png", "");
-	btn_Setting->setPosition(Vec2(230, 150));
+	btn_Setting->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 150));
 	btn_Setting->setScale(0.2);
 	
 	btn_Setting->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
@@ -64,7 +80,6 @@ bool MainMenuScene::init()
 	});
 
 	this->addChild(btn_Setting);
-
 
 
 	return true;
