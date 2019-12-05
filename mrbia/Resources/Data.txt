@@ -1,4 +1,4 @@
-#SPRITE 9
+#SPRITE 10
 ID: 0
 PATH: background.png
 ID: 1
@@ -17,6 +17,8 @@ ID: 7
 PATH: aestroid_gray.png
 ID: 8
 PATH: 1.png
+ID: 9
+PATH: loadingbar_bg.png
 #BUTTON 3
 ID: 0
 NORMAL_PATH: play_normal.png
@@ -32,3 +34,6 @@ ID: 0
 PATH: fonts/Marker Felt.ttf
 ID: 1
 PATH: fonts/arial.ttf
+#UISPRITE 1
+ID: 0
+PATH: loadingbar.png

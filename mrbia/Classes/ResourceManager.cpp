@@ -48,7 +48,7 @@ void ResourceManager::load(string fileName)
 
 				// create sprite
 				auto sprite = Sprite::create(path);
-	
+					
 				// insert map
 				m_sprites.insert(pair<int, Sprite*>(id, sprite));
 
@@ -90,23 +90,48 @@ void ResourceManager::load(string fileName)
 				num_sprite--;
 			}
 		}
+		else if (arr_sprite[0] == "#UISPRITE") {
+			int num_sprite = atoi(arr_sprite[1].c_str());
+			while (num_sprite > 0) {
+				i++;                  // id
+				int id = get_ID(arr_source[i]);
+				
+				i++;                  // path
+				string path = get_Path(arr_source[i]);
+
+				// create sprite
+				auto sprite = ui::LoadingBar::create(path);
+
+				// insert map
+				m_loadings.insert(pair<int, ui::LoadingBar*>(id, sprite));
+
+				num_sprite--;
+			}
+		}
 	}
 }
 
 Sprite * ResourceManager::loadSpriteById(int id)
 {
+	m_sprites.at(id)->retain();
 	return m_sprites.at(id);
 }
 
 ui::Button * ResourceManager::getButtonById(int id)
 {
-	
+	m_buttons.at(id)->retain();
 	return m_buttons.at(id);
 }
 
 Label * ResourceManager::getLabelById(int id)
 {
+	m_labels.at(id)->retain();
 	return m_labels.at(id);
+}
+
+ui::LoadingBar * ResourceManager::getLoadingBarById(int id)
+{
+	return m_loadings.at(id);
 }
 
 std::vector<std::string> ResourceManager::split(std::string str1, std::string str2)

@@ -1,5 +1,4 @@
 #pragma once
-#include "cocos2d.h"
 #include <list>
 #include "ResourceManager.h"
 
@@ -19,6 +18,7 @@ public:
 	Scene* getScene();
 	virtual void Init() = 0;
 	virtual void Update(float deltaTime) = 0;
+	virtual void setPosition_Space(float x, float y) = 0;
 	Objject(Scene* scene);
 	~Objject();
 };

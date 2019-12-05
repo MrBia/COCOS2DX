@@ -32,17 +32,6 @@ bool MainMenuScene::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 
 
-	// Create Logo
-	G = Sprite::create("G.png");
-	G->setScale(0.3);
-	G->setPosition(visibleSize.width/2, visibleSize.height/2);
-	gameloft = Sprite::create("gameloft.png");
-	gameloft->setScale(0.3);
-	gameloft->setPosition(visibleSize.width / 2, visibleSize.height / 2 - 70);
-	this->addChild(G);
-	this->addChild(gameloft);
-
-
 	// btn play
 	auto button = ui::Button::create("btn_Play.png", "");
 	button->setPosition(Vec2(visibleSize.width/2, visibleSize.height - 100));

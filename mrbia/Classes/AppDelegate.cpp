@@ -8,6 +8,7 @@
 //#include "MainMenuScene.h"
 #include "ResourceManager.h"
 #include "GamePlayScene.h"
+#include "LoadingScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -108,8 +109,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	//auto scene = NewGame::createNewGame();
 	ResourceManager::getInstance()->Init("Data.txt");
 	//auto scene = MainMenuScene::createMainMenu();
-	auto scene = GamePlayScene::createGamePlay();
-
+	//auto scene = GamePlayScene::createGamePlay();
+	auto scene = LoadingScene::createLoaddingScene();
     // run
     director->runWithScene(scene);
 

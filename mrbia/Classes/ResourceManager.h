@@ -13,6 +13,7 @@ private:
 	std::map<int, Sprite*> m_sprites;
 	std::map<int, ui::Button*> m_buttons;
 	std::map<int, Label*> m_labels;
+	std::map<int, ui::LoadingBar*> m_loadings;
 	ResourceManager();
 	static ResourceManager* instance;
 public:
@@ -23,6 +24,7 @@ public:
 	Sprite* loadSpriteById(int id);
 	ui::Button* getButtonById(int id);
 	Label* getLabelById(int id);
+	ui::LoadingBar* getLoadingBarById(int id);
 
 	std::vector<std::string> split(std::string str1, std::string str2);
 	int get_ID(string s);

@@ -2,20 +2,36 @@
 
 
 
+void Bullet::setPosition_Space(float x, float y)
+{
+	this->x_spaceShooter = x;
+	this->y_spaceShooter = y;
+}
+
 void Bullet::Init()
 {
-	this->speed = 5;
-	this->setSprite(ResourceManager::getInstance()->loadSpriteById(2));
+	this->speed = 1000;
+	this->setSprite(clone(ResourceManager::getInstance()->loadSpriteById(2)));
+	this->getSprite()->removeFromParent();
 	this->getScene()->addChild(this->getSprite());
-	//this->getSprite()->setPosition(SpaceShooter::getSprite()->getPosition().x, SpaceShooter::getSprite()->getPosition().y);*/
+	this->getSprite()->setVisible(false);
 }
 
 void Bullet::Update(float deltaTime)
 {
-	this->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y + this->speed * deltaTime);
-	/*if (this->getSprite()->getPosition().y > this->getHeightScreen() + 10) {
-		this->getSprite()->setPosition(SpaceShooter::getSprite()->getPosition().x, SpaceShooter::getSprite()->getPosition().y);
-	}*/
+	if (this->getSprite()->getPosition().y > this->getHeightScreen() + 10) {
+		//this->getSprite()->setPosition(this->x_spaceShooter, this->y_spaceShooter);
+		this->getSprite()->setVisible(false);
+	}
+	else {
+		this->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y + this->speed * deltaTime);
+	}
+}
+
+Sprite * Bullet::clone(Sprite* sprite)
+{
+	Sprite* cloneSprite = Sprite::createWithTexture(sprite->getTexture());
+	return cloneSprite;
 }
 
 Bullet::Bullet(Scene* scene) : Objject(scene)

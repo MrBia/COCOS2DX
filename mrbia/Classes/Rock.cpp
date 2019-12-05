@@ -4,7 +4,7 @@
 
 void Rock::Init()
 {
-	this->speed = 1;
+	this->speed = 50;
 	this->setSprite(ResourceManager::getInstance()->loadSpriteById(4));
 	this->getSprite()->setPosition(this->getWidthScreen() / 2, this->getHeightScreen() - 10);
 	this->getScene()->addChild(this->getSprite());
@@ -16,6 +16,10 @@ void Rock::Update(float deltaTime)
 	if (this->getSprite()->getPosition().y < -20) {
 		this->getSprite()->setPosition(this->getWidthScreen() / 2, this->getHeightScreen() + 20);
 	}
+}
+
+void Rock::setPosition_Space(float x, float y)
+{
 }
 
 Rock::Rock(Scene* scene) : Objject(scene)

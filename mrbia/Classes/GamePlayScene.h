@@ -17,7 +17,7 @@ public:
 	void update(float deltaTime) override;
 	GamePlayScene();
 	~GamePlayScene();
-
+	bool OnTouchBegan(Touch* touch, Event* event);
 	CREATE_FUNC(GamePlayScene);
 };
 

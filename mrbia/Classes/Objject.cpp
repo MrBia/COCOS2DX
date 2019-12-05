@@ -27,6 +27,10 @@ Scene * Objject::getScene()
 	return this->scene;
 }
 
+
+
+
+
 Objject::Objject(Scene* scene)
 {
 	this->scene = scene;
