@@ -5,10 +5,11 @@
 //#include "subScene.h"
 //#include "LogoScene.h"
 //#include "NewGame.h"
-#include "MainMenuScene.h"
+//#include "MainMenuScene.h"
 #include "ResourceManager.h"
-#include "GamePlayScene.h"
+//#include "GamePlayScene.h"
 #include "LoadingScene.h"
+#include "GameOverScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -106,9 +107,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
    
 	
 	ResourceManager::getInstance()->Init("Data.txt");
-	//auto scene = MainMenuScene::createMainMenu();
-	//auto scene = GamePlayScene::createGamePlay();
-	auto scene = LoadingScene::createLoaddingScene();
+	//auto scene = LoadingScene::createLoaddingScene();
+	auto scene = GameOverScene::createSceneOver();
     
 	// run
     director->runWithScene(scene);

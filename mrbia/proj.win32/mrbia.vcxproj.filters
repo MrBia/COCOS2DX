@@ -27,6 +27,7 @@
     <ClCompile Include="..\Classes\Objject.cpp" />
     <ClCompile Include="..\Classes\GamePlayScene.cpp" />
     <ClCompile Include="..\Classes\LoadingScene.cpp" />
+    <ClCompile Include="..\Classes\GameOverScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -44,6 +45,7 @@
     <ClInclude Include="..\Classes\Objject.h" />
     <ClInclude Include="..\Classes\GamePlayScene.h" />
     <ClInclude Include="..\Classes\LoadingScene.h" />
+    <ClInclude Include="..\Classes\GameOverScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
