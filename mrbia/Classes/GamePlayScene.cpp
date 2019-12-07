@@ -14,18 +14,18 @@ bool GamePlayScene::init()
 	}
 
 	// initialize number rock
-	this->num_rock = 10;
+	this->num_rock = 5;
 
 
 	// create space shooter
-	this->rock = new Rock(this);
 	this->spaceShooter = new SpaceShooter(this);
 
 
 	// create list rock
+	srand(time(NULL));
 	for (int i = 0; i < this->num_rock; i++) {
-		//Objject* rock = new Rock(this->getScene());
-		//this->m_rocks.pushBack(rock);
+		Objject* rock = new Rock(this);
+		this->m_rocks.push_back(rock);
 	}
 
 
@@ -41,7 +41,12 @@ bool GamePlayScene::init()
 
 void GamePlayScene::update(float deltaTime)
 {
-	this->rock->Update(deltaTime);
+	this->spaceShooter->Collision(m_rocks);
+
+	for (int i = 0; i < this->num_rock; i++) {
+		this->m_rocks[i]->Update(deltaTime);
+	}
+
 	this->spaceShooter->Update(deltaTime);
 }
 
@@ -53,7 +58,6 @@ GamePlayScene::GamePlayScene()
 GamePlayScene::~GamePlayScene()
 {
 	delete this->spaceShooter;
-	delete this->rock;
 }
 
 bool GamePlayScene::OnTouchBegan(Touch * touch, Event * event)
@@ -69,8 +73,8 @@ bool GamePlayScene::OnTouchBegan(Touch * touch, Event * event)
 	float alpha = atan((touch->getLocation().y - y_space_shooter) / (touch->getLocation().x - x_space_shooter))*(180 / M_PI);
 
 	// x move   y move
-	float tlx = spaceShooter->getSpeed_Shooter() * cos(alpha*(M_PI / 180));
-	float tly = spaceShooter->getSpeed_Shooter() * sin(alpha*(M_PI / 180));
+	float tlx = spaceShooter->getSpeed_spaceShooter() * cos(alpha*(M_PI / 180));
+	float tly = spaceShooter->getSpeed_spaceShooter() * sin(alpha*(M_PI / 180));
 
 	if (tly > 0 && touch->getLocation().x < x_space_shooter && touch->getLocation().y < y_space_shooter) {
 		tlx = -tlx;

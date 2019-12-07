@@ -16,19 +16,14 @@ Sprite * SpaceShooter::clone(Sprite * sprite)
 
 
 
-float SpaceShooter::getSpeed_Shooter()
+float SpaceShooter::getSpeed_spaceShooter()
 {
-	return this->speed_Shooter;
+	return this->speed_spaceShooter;
 }
 
 void SpaceShooter::Shoot(float deltaTime)
 {
-	// bullet update
-
-	/*std::list<Objject*>::iterator i;
-	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
-		(**i).Update(deltaTime);
-	}*/
+	// bullet shoot
 
 	std::list<Objject*>::iterator j;
 	for (j = this->m_bullet.begin(); j != this->m_bullet.end(); j++) {
@@ -38,6 +33,51 @@ void SpaceShooter::Shoot(float deltaTime)
 			break;
 		}
 	}
+}
+
+void SpaceShooter::Collision(vector<Objject*> rock)
+{
+	std::list<Objject*>::iterator i;
+	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
+		if ((**i).getSprite()->isVisible() == true) {
+			for (int j = 0; j < rock.size(); j++) {
+				float dis = this->getDistance(*i, rock[j]);
+				if (isCollision(dis, rock[j], *i)) {
+					log("chammmmmmmmm");
+					(**i).getSprite()->setVisible(false);
+					rock[j]->getSprite()->setVisible(false);
+				}
+			}
+		}
+	}
+}
+
+bool SpaceShooter::isCollision(float dis, Objject * rock, Objject * bullet)
+{
+	// get size of bullet and rock
+	float wid_rock = rock->getSprite()->getBoundingBox().size.width;
+	float hei_rock = rock->getSprite()->getBoundingBox().size.height;
+	float wid_bullet = bullet->getSprite()->getBoundingBox().size.width;
+	float hei_bullet = bullet->getSprite()->getBoundingBox().size.height;
+
+	// check
+	float dis_collisionX = wid_rock / 2 + wid_bullet / 2;
+	float dis_collisionY = hei_rock / 2 + hei_bullet / 2;
+	
+	if (dis <= dis_collisionX || dis <= dis_collisionY) {
+			return true;
+	}
+	return false;
+}
+
+float SpaceShooter::getDistance(Objject* x, Objject* y)
+{
+	auto pos_X = x->getSprite()->getPosition();
+	auto pos_Y = y->getSprite()->getPosition();
+
+	// (y2-y1)^2 + (x2-x1)^2
+	float dis = sqrt((pos_X.x - pos_Y.x)*(pos_X.x - pos_Y.x) + (pos_X.y - pos_Y.y)*(pos_X.y - pos_Y.y));
+	return dis;
 }
 
 void SpaceShooter::setPosition_Space(float x, float y)
@@ -55,9 +95,9 @@ void SpaceShooter::Init()
 	this->num_bullet = 50;
 
 	// initial space shooter speed
-	speed_Shooter = 100;
+	speed_spaceShooter = 200;
 
-	// initial x, y
+	// initial x, y space
 	x_space = 0;
 	y_space = 0;
 
@@ -66,6 +106,7 @@ void SpaceShooter::Init()
 	this->setSprite(ResourceManager::getInstance()->loadSpriteById(8));
 	this->getSprite()->setPosition(this->getWidthScreen() / 2, 30);
 	this->getScene()->addChild(this->getSprite());
+
 
 	// create list bullet
 	for (int i = 0; i < num_bullet; i++) {
@@ -76,7 +117,8 @@ void SpaceShooter::Init()
 
 void SpaceShooter::Update(float deltaTime)
 {
-	// bullet update after 10 frames
+
+	// bullet shoot after 0.2 s
 	static float count = 0;
 	count += deltaTime;
 
@@ -85,6 +127,8 @@ void SpaceShooter::Update(float deltaTime)
 		count = 0;
 	}
 
+
+	// update bullet 
 	std::list<Objject*>::iterator i;
 	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
 		(**i).Update(deltaTime);

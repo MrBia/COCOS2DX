@@ -4,9 +4,9 @@
 
 void Rock::Init()
 {
-	this->speed = 50;
+	this->speed = 30;
 	this->setSprite(clone(ResourceManager::getInstance()->loadSpriteById(4)));
-	this->getSprite()->setPosition(this->getWidthScreen() / 2, this->getHeightScreen() - 10);
+	this->getSprite()->setPosition(this->rand_position(), this->getHeightScreen() + 20);
 	this->getSprite()->removeFromParent();
 	this->getScene()->addChild(this->getSprite());
 }
@@ -14,8 +14,9 @@ void Rock::Init()
 void Rock::Update(float deltaTime)
 {
 	this->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y - speed * deltaTime);
-	if (this->getSprite()->getPosition().y < -20) {
-		this->getSprite()->setPosition(this->getWidthScreen() / 2, this->getHeightScreen() + 20);
+	if (this->getSprite()->getPosition().y < -20 || this->getSprite()->isVisible() == false) {
+		this->getSprite()->setPosition(this->rand_position(), this->getHeightScreen() + 20);
+		this->getSprite()->setVisible(true);
 	}
 }
 
@@ -32,6 +33,15 @@ Sprite * Rock::clone(Sprite * sprite)
 Rock::Rock(Scene* scene) : Objject(scene)
 {
 	Init();
+}
+
+float Rock::rand_position()
+{
+	int wid = Director::getInstance()->getVisibleSize().width;
+
+	float r = 0 + rand() % (wid + 1);
+
+	return r;
 }
 
 

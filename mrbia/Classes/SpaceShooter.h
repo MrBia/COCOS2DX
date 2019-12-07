@@ -2,6 +2,7 @@
 #include "Objject.h"
 #include "Bullet.h"
 
+
 class SpaceShooter : public Objject
 {
 private:
@@ -9,12 +10,14 @@ private:
 	std::list<Objject*> m_bullet;
 	float x_space;
 	float y_space;
-	float speed_Shooter;
+	float speed_spaceShooter;
 	float time_shoot;
 public:
-	float getSpeed_Shooter();
+	float getSpeed_spaceShooter();
 	void Shoot(float deltaTime);
-	void Collision();
+	void Collision(vector<Objject*> rock);
+	bool isCollision(float dis, Objject* rock, Objject* bullet);
+	float getDistance(Objject* x, Objject* y);
 	void setPosition_Space(float x, float y);
 	void Init();
 	void Update(float deltaTime);
