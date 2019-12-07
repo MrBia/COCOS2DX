@@ -10,7 +10,7 @@ void Bullet::setPosition_Space(float x, float y)
 
 void Bullet::Init()
 {
-	this->speed = 1000;
+	this->speed = 500;
 	this->setSprite(clone(ResourceManager::getInstance()->loadSpriteById(2)));
 	this->getSprite()->removeFromParent();
 	this->getScene()->addChild(this->getSprite());
@@ -20,10 +20,10 @@ void Bullet::Init()
 void Bullet::Update(float deltaTime)
 {
 	if (this->getSprite()->getPosition().y > this->getHeightScreen() + 10) {
-		//this->getSprite()->setPosition(this->x_spaceShooter, this->y_spaceShooter);
 		this->getSprite()->setVisible(false);
 	}
 	else {
+		if(this->getSprite()->isVisible() == true)
 		this->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y + this->speed * deltaTime);
 	}
 }

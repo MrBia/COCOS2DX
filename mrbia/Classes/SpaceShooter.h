@@ -19,6 +19,7 @@ public:
 	void Init();
 	void Update(float deltaTime);
 	SpaceShooter(Scene* scene);
+	Sprite* clone(Sprite* sprite);
 	~SpaceShooter();
 };
 

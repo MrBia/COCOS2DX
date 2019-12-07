@@ -23,11 +23,11 @@ bool SettingScene::init()
 
 	// Menu Item Sound
 	itemSound = MenuItemFont::create("Sound", CC_CALLBACK_1(SettingScene::menuSound, this));
-	itemSound->setPosition(200, 300);
+	itemSound->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2);
 
 	// Menu Item About
 	itemAbout = MenuItemFont::create("About", CC_CALLBACK_1(SettingScene::menuAbout, this));
-	itemAbout->setPosition(200, 250);
+	itemAbout->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2 - 50);
 
 	// Menu
 	myMenu = Menu::create(itemSound, itemAbout, nullptr);

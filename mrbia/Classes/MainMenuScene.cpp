@@ -1,7 +1,4 @@
 #include "MainMenuScene.h"
-#include "NewGame.h"
-#include "SettingScene.h"
-#include "ResourceManager.h"
 
 MainMenuScene::MainMenuScene()
 {
@@ -24,10 +21,6 @@ bool MainMenuScene::init()
 		return false;
 	}
 
-	auto sprite = ResourceManager::getInstance()->loadSpriteById(1);
-	sprite->setPosition(100, 100);
-	this->addChild(sprite);
-
 	// get size
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 
@@ -36,11 +29,12 @@ bool MainMenuScene::init()
 	auto button = ui::Button::create("btn_Play.png", "");
 	button->setPosition(Vec2(visibleSize.width/2, visibleSize.height - 100));
 	button->setScale(0.2);
+	
 
 	button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
 		switch (type) {
 		case ui::Widget::TouchEventType::BEGAN: {
-			Director::getInstance()->replaceScene(NewGame::createNewGame());
+			Director::getInstance()->replaceScene(GamePlayScene::createGamePlay());
 			break; 
 		}
 		case ui::Widget::TouchEventType::ENDED: break;

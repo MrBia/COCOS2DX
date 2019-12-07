@@ -13,8 +13,21 @@ bool GamePlayScene::init()
 		return false;
 	}
 
-	this->spaceShooter = new SpaceShooter(this);
+	// initialize number rock
+	this->num_rock = 10;
+
+
+	// create space shooter
 	this->rock = new Rock(this);
+	this->spaceShooter = new SpaceShooter(this);
+
+
+	// create list rock
+	for (int i = 0; i < this->num_rock; i++) {
+		//Objject* rock = new Rock(this->getScene());
+		//this->m_rocks.pushBack(rock);
+	}
+
 
 	// touch began
 	auto touchListener = EventListenerTouchOneByOne::create();

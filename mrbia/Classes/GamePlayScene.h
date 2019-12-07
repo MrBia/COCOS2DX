@@ -11,6 +11,8 @@ class GamePlayScene : public Scene
 private:
 	SpaceShooter *spaceShooter;
 	Rock * rock;
+	int num_rock;
+	//Vector<Objject*> m_rocks;
 public:
 	static Scene* createGamePlay();
 	virtual bool init() override;

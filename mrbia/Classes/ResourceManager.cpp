@@ -48,7 +48,8 @@ void ResourceManager::load(string fileName)
 
 				// create sprite
 				auto sprite = Sprite::create(path);
-					
+				sprite->retain();
+
 				// insert map
 				m_sprites.insert(pair<int, Sprite*>(id, sprite));
 
@@ -69,6 +70,7 @@ void ResourceManager::load(string fileName)
 				
 				// create button
 				auto button = ui::Button::create(path1, path2);
+				button->retain();
 
 				// insert map
 				m_buttons.insert(pair<int, ui::Button*>(id, button));
@@ -101,6 +103,7 @@ void ResourceManager::load(string fileName)
 
 				// create sprite
 				auto sprite = ui::LoadingBar::create(path);
+				sprite->retain();
 
 				// insert map
 				m_loadings.insert(pair<int, ui::LoadingBar*>(id, sprite));
@@ -113,19 +116,16 @@ void ResourceManager::load(string fileName)
 
 Sprite * ResourceManager::loadSpriteById(int id)
 {
-	m_sprites.at(id)->retain();
 	return m_sprites.at(id);
 }
 
 ui::Button * ResourceManager::getButtonById(int id)
 {
-	m_buttons.at(id)->retain();
 	return m_buttons.at(id);
 }
 
 Label * ResourceManager::getLabelById(int id)
 {
-	m_labels.at(id)->retain();
 	return m_labels.at(id);
 }
 

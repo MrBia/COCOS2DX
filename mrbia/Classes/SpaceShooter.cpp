@@ -7,6 +7,12 @@ SpaceShooter::SpaceShooter(Scene* scene) : Objject(scene)
 	Init();
 }
 
+Sprite * SpaceShooter::clone(Sprite * sprite)
+{
+	auto sprite_clone = Sprite::createWithTexture(sprite->getTexture());
+	return sprite_clone;
+}
+
 
 
 
@@ -18,14 +24,17 @@ float SpaceShooter::getSpeed_Shooter()
 void SpaceShooter::Shoot(float deltaTime)
 {
 	// bullet update
-	std::list<Objject*>::iterator i;
+
+	/*std::list<Objject*>::iterator i;
 	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
-		if ((**i).getSprite()->isVisible() == true) {
-			(**i).Update(deltaTime);
-		}
-		else {
-			(**i).getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y);
-			(**i).getSprite()->setVisible(true);
+		(**i).Update(deltaTime);
+	}*/
+
+	std::list<Objject*>::iterator j;
+	for (j = this->m_bullet.begin(); j != this->m_bullet.end(); j++) {
+		if ((**j).getSprite()->isVisible() == false) {
+			(**j).getSprite()->setVisible(true);
+			(**j).getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y);
 			break;
 		}
 	}
@@ -40,10 +49,10 @@ void SpaceShooter::setPosition_Space(float x, float y)
 void SpaceShooter::Init()
 {
 	// initial time shoot
-	time_shoot = 0.05;
+	time_shoot = 0.2;
 
 	// create number bullet
-	this->num_bullet = 20;
+	this->num_bullet = 50;
 
 	// initial space shooter speed
 	speed_Shooter = 100;
@@ -61,7 +70,6 @@ void SpaceShooter::Init()
 	// create list bullet
 	for (int i = 0; i < num_bullet; i++) {
 		Objject* bullet = new Bullet(this->getScene());
-		//bullet->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y - i * 30);
 		this->m_bullet.push_back(bullet);
 	}
 }
@@ -75,6 +83,11 @@ void SpaceShooter::Update(float deltaTime)
 	if (count >= time_shoot) {
 		Shoot(deltaTime);
 		count = 0;
+	}
+
+	std::list<Objject*>::iterator i;
+	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
+		(**i).Update(deltaTime);
 	}
 
 	// space shooter update

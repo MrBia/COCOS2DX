@@ -46,7 +46,7 @@ bool LoadingScene::init()
 	}
 	});
 
-	auto sequenRunUpdateLoadingBar = Sequence::createWithTwoActions(updateLoadingBar, DelayTime::create(0.05f));
+	auto sequenRunUpdateLoadingBar = Sequence::createWithTwoActions(updateLoadingBar, DelayTime::create(0.01f));
 	auto repeat = Repeat::create(sequenRunUpdateLoadingBar, 100);
 	loadingBar_2->runAction(repeat);
 
@@ -59,6 +59,8 @@ bool LoadingScene::init()
 
 void LoadingScene::update(float deltaTime)
 {
-	Sleep(1000);
+	static float count = 0;
+	count += deltaTime;
+	if(count >= 4)
 	Director::getInstance()->replaceScene(MainMenuScene::createMainMenu());
 }

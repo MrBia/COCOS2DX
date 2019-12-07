@@ -5,7 +5,7 @@
 //#include "subScene.h"
 //#include "LogoScene.h"
 //#include "NewGame.h"
-//#include "MainMenuScene.h"
+#include "MainMenuScene.h"
 #include "ResourceManager.h"
 #include "GamePlayScene.h"
 #include "LoadingScene.h"
@@ -103,15 +103,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    //auto scene = HelloWorld::createScene();
-	//auto scene = subScene::createScene();
-	//auto scene = LogoScene::createScene();
-	//auto scene = NewGame::createNewGame();
+   
+	
 	ResourceManager::getInstance()->Init("Data.txt");
 	//auto scene = MainMenuScene::createMainMenu();
 	//auto scene = GamePlayScene::createGamePlay();
 	auto scene = LoadingScene::createLoaddingScene();
-    // run
+    
+	// run
     director->runWithScene(scene);
 
     return true;

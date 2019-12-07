@@ -1,13 +1,13 @@
 #pragma once
-#include"cocos2d.h"
+#include "GamePlayScene.h"
+#include "SettingScene.h"
+#include "ResourceManager.h"
 #include"ui/CocosGUI.h"
 
 USING_NS_CC;
 class MainMenuScene:public cocos2d::Scene
 {
 private:
-	Sprite* G;
-	Sprite* gameloft;
 	Menu* myMenu;
 	Label* labelMenu;
 	MenuItemLabel* endItem;
