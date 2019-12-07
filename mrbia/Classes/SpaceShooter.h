@@ -1,7 +1,7 @@
 #pragma once
 #include "Objject.h"
 #include "Bullet.h"
-
+#define blod 10
 
 class SpaceShooter : public Objject
 {

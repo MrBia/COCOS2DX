@@ -6,6 +6,7 @@ USING_NS_CC;
 class Objject
 {
 private:
+	int blood;
 	Sprite* m_sprite;
 	Scene* scene;
 	float widthScreen;
@@ -19,6 +20,8 @@ public:
 	virtual void Init() = 0;
 	virtual void Update(float deltaTime) = 0;
 	virtual void setPosition_Space(float x, float y) = 0;
+	void setBlood(int b);
+	int getBlood();
 	Objject(Scene* scene);
 	~Objject();
 };

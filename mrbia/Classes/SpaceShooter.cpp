@@ -15,7 +15,6 @@ Sprite * SpaceShooter::clone(Sprite * sprite)
 
 
 
-
 float SpaceShooter::getSpeed_spaceShooter()
 {
 	return this->speed_spaceShooter;
@@ -37,15 +36,26 @@ void SpaceShooter::Shoot(float deltaTime)
 
 void SpaceShooter::Collision(vector<Objject*> rock)
 {
+
+	// colision rock plane and bullet
 	std::list<Objject*>::iterator i;
 	for (i = this->m_bullet.begin(); i != this->m_bullet.end(); i++) {
 		if ((**i).getSprite()->isVisible() == true) {
 			for (int j = 0; j < rock.size(); j++) {
+				// bullet and rock
 				float dis = this->getDistance(*i, rock[j]);
 				if (isCollision(dis, rock[j], *i)) {
-					log("chammmmmmmmm");
 					(**i).getSprite()->setVisible(false);
+					rock[j]->setBlood(rock[j]->getBlood() - 1);
+					if(rock[j]->getBlood() <= 0) rock[j]->getSprite()->setVisible(false);
+				}
+
+				// plane and rock
+				float dis_plane = this->getDistance(this, rock[j]);
+				if (isCollision(dis_plane, rock[j], this) && rock[j]->getSprite()->isVisible() == true) {
 					rock[j]->getSprite()->setVisible(false);
+					this->setBlood(this->getBlood() - 1);
+					if (this->getBlood() <= 0)this->getSprite()->setVisible(false);
 				}
 			}
 		}
@@ -88,6 +98,9 @@ void SpaceShooter::setPosition_Space(float x, float y)
 
 void SpaceShooter::Init()
 {
+	// initial blood of plane
+	this->setBlood(blod);
+
 	// initial time shoot
 	time_shoot = 0.2;
 
@@ -135,7 +148,15 @@ void SpaceShooter::Update(float deltaTime)
 	}
 
 	// space shooter update
-	this->getSprite()->setPosition(this->getSprite()->getPosition().x + x_space * deltaTime, this->getSprite()->getPosition().y + y_space * deltaTime);
+	float posX = this->getSprite()->getPosition().x;
+	float posY = this->getSprite()->getPosition().y;
+
+	this->getSprite()->setPosition(posX + x_space * deltaTime, posY + y_space * deltaTime);
+	
+	if (posX <= 0 || posX >= this->getWidthScreen() || posY <= 0 || posY >= this->getHeightScreen()) {
+		x_space = 0;
+		y_space = 0;
+	}
 }
 
 SpaceShooter::~SpaceShooter()

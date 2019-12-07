@@ -1,10 +1,10 @@
 #pragma once
 #include "Objject.h"
+#define blod 2
 class Rock : public Objject
 {
 private:
 	float speed;
-	int blood;
 public:
 	void Init();
 	void Update(float deltaTime);

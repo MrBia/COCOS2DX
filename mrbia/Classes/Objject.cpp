@@ -31,6 +31,16 @@ Scene * Objject::getScene()
 
 
 
+void Objject::setBlood(int b)
+{
+	this->blood = b;
+}
+
+int Objject::getBlood()
+{
+	return this->blood;
+}
+
 Objject::Objject(Scene* scene)
 {
 	this->scene = scene;
