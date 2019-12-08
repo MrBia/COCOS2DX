@@ -16,7 +16,7 @@ public:
 	static cocos2d::Scene* createLoaddingScene();
 	virtual bool init() override;
 	void update(float deltaTime) override;
-
+	Sprite* clone(Sprite* sprite);
 	CREATE_FUNC(LoadingScene);
 };
 

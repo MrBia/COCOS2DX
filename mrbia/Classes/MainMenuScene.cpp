@@ -27,7 +27,7 @@ bool MainMenuScene::init()
 
 	// btn play
 	auto button = ui::Button::create("btn_Play.png", "");
-	button->setPosition(Vec2(visibleSize.width/2, visibleSize.height - 100));
+	button->setPosition(Vec2(visibleSize.width/2, visibleSize.height / 2 + 50));
 	button->setScale(0.2);
 	
 
@@ -44,7 +44,7 @@ bool MainMenuScene::init()
 	this->addChild(button);
 	
 	auto btn_Setting = ui::Button::create("btn_Setting.png", "");
-	btn_Setting->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 150));
+	btn_Setting->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 50));
 	btn_Setting->setScale(0.2);
 	
 	btn_Setting->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {

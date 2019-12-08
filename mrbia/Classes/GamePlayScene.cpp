@@ -13,13 +13,20 @@ bool GamePlayScene::init()
 		return false;
 	}
 
+	// background
+	auto background = clone(ResourceManager::getInstance()->loadSpriteById(0));
+	background->setScale(1.5);
+	background->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2);
+	this->addChild(background, -1);
+
+
 	// initialize number rock
 	this->num_rock = 5;
 
 
 	// create space shooter
 	this->spaceShooter = new SpaceShooter(this);
-
+	
 
 	// create list rock
 	srand(time(NULL));
@@ -52,8 +59,9 @@ void GamePlayScene::update(float deltaTime)
 	// update plane
 	this->spaceShooter->Update(deltaTime);
 	if (this->spaceShooter->getSprite()->isVisible() == false) {
-		Sleep(2000);
-		this->spaceShooter->getSprite()->setVisible(true); // ?
+		Sleep(1500);
+		this->spaceShooter->getSprite()->setVisible(true); 
+		//this->spaceShooter->getSprite()->pause();
 		Director::getInstance()->replaceScene(GameOverScene::createSceneOver());
 	}
 }
@@ -101,4 +109,10 @@ bool GamePlayScene::OnTouchBegan(Touch * touch, Event * event)
 	spaceShooter->setPosition_Space(tlx, tly);
 
 	return false;
+}
+
+Sprite * GamePlayScene::clone(Sprite * sprite)
+{
+	auto s_clone = Sprite::createWithTexture(sprite->getTexture());
+	return s_clone;
 }

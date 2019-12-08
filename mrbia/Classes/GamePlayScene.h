@@ -20,6 +20,7 @@ public:
 	GamePlayScene();
 	~GamePlayScene();
 	bool OnTouchBegan(Touch* touch, Event* event);
+	Sprite* clone(Sprite* sprite);
 	CREATE_FUNC(GamePlayScene);
 };
 

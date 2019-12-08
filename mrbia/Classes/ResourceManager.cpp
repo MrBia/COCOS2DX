@@ -111,6 +111,55 @@ void ResourceManager::load(string fileName)
 				num_sprite--;
 			}
 		}
+		else if (arr_sprite[0] == "#ANIMATION") {
+			int num_sprite = atoi(arr_sprite[1].c_str());
+
+			while (num_sprite > 0) {
+				i++;                  // id
+				int id = get_ID(arr_source[i]);
+
+				i++;                  // path
+				string path1 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path2 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path3 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path4 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path5 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path6 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path7 = get_Path(arr_source[i]);
+				i++;                  // path
+				string path8 = get_Path(arr_source[i]);
+
+				// create sprite
+				auto sprite = Sprite::create();
+				
+				cocos2d::Vector<cocos2d::SpriteFrame*> animateFrames;
+				animateFrames.pushBack(SpriteFrame::create(path1, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path2, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path3, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path4, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path5, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path6, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path7, Rect(0, 0, 128, 128)));
+				animateFrames.pushBack(SpriteFrame::create(path8, Rect(0, 0, 128, 128)));
+
+				auto animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
+				auto animate = Animate::create(animation);
+				sprite->runAction(RepeatForever::create(animate));
+				
+				sprite->retain();
+
+				// insert map
+				m_spriteAnimation.insert(pair<int, Sprite*>(id, sprite));
+
+				num_sprite--;
+			}
+		}
 	}
 }
 
@@ -132,6 +181,11 @@ Label * ResourceManager::getLabelById(int id)
 ui::LoadingBar * ResourceManager::getLoadingBarById(int id)
 {
 	return m_loadings.at(id);
+}
+
+Sprite * ResourceManager::getSpriteAnimationById(int id)
+{
+	return m_spriteAnimation.at(id);
 }
 
 std::vector<std::string> ResourceManager::split(std::string str1, std::string str2)

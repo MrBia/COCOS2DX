@@ -37,3 +37,13 @@ PATH: fonts/arial.ttf
 #UISPRITE 1
 ID: 0
 PATH: loadingbar.png
+#ANIMATION 1
+ID: 0
+PATH: SpaceShip/1.png
+PATH: SpaceShip/2.png
+PATH: SpaceShip/3.png
+PATH: SpaceShip/4.png
+PATH: SpaceShip/5.png
+PATH: SpaceShip/6.png
+PATH: SpaceShip/7.png
+PATH: SpaceShip/8.png

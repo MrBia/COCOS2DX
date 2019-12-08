@@ -116,8 +116,9 @@ void SpaceShooter::Init()
 
 
 	// create space shooter
-	this->setSprite(ResourceManager::getInstance()->loadSpriteById(8));
+	this->setSprite(ResourceManager::getInstance()->getSpriteAnimationById(0));
 	this->getSprite()->setPosition(this->getWidthScreen() / 2, 30);
+	//this->getSprite()->resume();
 	this->getScene()->addChild(this->getSprite());
 
 

@@ -22,6 +22,12 @@ bool LoadingScene::init()
 		return false;
 	}
 
+	// background
+	auto background = clone(ResourceManager::getInstance()->loadSpriteById(0));
+	background->setScale(1.5);
+	background->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2);
+	this->addChild(background, -1);
+
 	// logo
 	auto logo = ResourceManager::getInstance()->loadSpriteById(3);
 	logo->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2 + 70);
@@ -63,4 +69,10 @@ void LoadingScene::update(float deltaTime)
 	count += deltaTime;
 	if(count >= 4)
 	Director::getInstance()->replaceScene(MainMenuScene::createMainMenu());
+}
+
+Sprite * LoadingScene::clone(Sprite * sprite)
+{
+	auto s_clone = Sprite::createWithTexture(sprite->getTexture());
+	return s_clone;
 }
