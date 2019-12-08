@@ -1,15 +1,10 @@
 
 
 #include "AppDelegate.h"
-//#include "HelloWorldScene.h"
-//#include "subScene.h"
-//#include "LogoScene.h"
-//#include "NewGame.h"
-//#include "MainMenuScene.h"
+
 #include "ResourceManager.h"
-//#include "GamePlayScene.h"
 #include "LoadingScene.h"
-#include "GameOverScene.h"
+//#include "GameOverScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -107,9 +102,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
    
 	
 	ResourceManager::getInstance()->Init("Data.txt");
-	//auto scene = LoadingScene::createLoaddingScene();
-	auto scene = GameOverScene::createSceneOver();
-    
+	auto scene = LoadingScene::createLoaddingScene();
+	//auto scene = GameOverScene::createSceneOver();
+
 	// run
     director->runWithScene(scene);
 

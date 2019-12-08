@@ -55,7 +55,7 @@ void SpaceShooter::Collision(vector<Objject*> rock)
 				if (isCollision(dis_plane, rock[j], this) && rock[j]->getSprite()->isVisible() == true) {
 					rock[j]->getSprite()->setVisible(false);
 					this->setBlood(this->getBlood() - 1);
-					if (this->getBlood() <= 0)this->getSprite()->setVisible(false);
+					if (this->getBlood() <= 0) this->getSprite()->setVisible(false);
 				}
 			}
 		}
@@ -99,7 +99,7 @@ void SpaceShooter::setPosition_Space(float x, float y)
 void SpaceShooter::Init()
 {
 	// initial blood of plane
-	this->setBlood(blod);
+	this->setBlood(blodd);
 
 	// initial time shoot
 	time_shoot = 0.2;

@@ -41,13 +41,21 @@ bool GamePlayScene::init()
 
 void GamePlayScene::update(float deltaTime)
 {
+	// va cham
 	this->spaceShooter->Collision(m_rocks);
 
+	// update rock
 	for (int i = 0; i < this->num_rock; i++) {
 		this->m_rocks[i]->Update(deltaTime);
 	}
 
+	// update plane
 	this->spaceShooter->Update(deltaTime);
+	if (this->spaceShooter->getSprite()->isVisible() == false) {
+		Sleep(2000);
+		this->spaceShooter->getSprite()->setVisible(true); // ?
+		Director::getInstance()->replaceScene(GameOverScene::createSceneOver());
+	}
 }
 
 GamePlayScene::GamePlayScene()

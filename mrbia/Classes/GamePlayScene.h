@@ -4,6 +4,7 @@
 #include "SpaceShooter.h"
 #include "Rock.h"
 #include "Bullet.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 class GamePlayScene : public Scene
