@@ -150,12 +150,11 @@ void ResourceManager::load(string fileName)
 
 				auto animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
 				auto animate = Animate::create(animation);
-				sprite->runAction(RepeatForever::create(animate));
-				
-				sprite->retain();
+				auto repeatForeverAnimate = RepeatForever::create(animate);
+				repeatForeverAnimate->retain();
 
 				// insert map
-				m_spriteAnimation.insert(pair<int, Sprite*>(id, sprite));
+				m_spriteAnimation.insert(pair<int, RepeatForever*>(id, repeatForeverAnimate));
 
 				num_sprite--;
 			}
@@ -183,7 +182,7 @@ ui::LoadingBar * ResourceManager::getLoadingBarById(int id)
 	return m_loadings.at(id);
 }
 
-Sprite * ResourceManager::getSpriteAnimationById(int id)
+RepeatForever * ResourceManager::getSpriteAnimationById(int id)
 {
 	return m_spriteAnimation.at(id);
 }

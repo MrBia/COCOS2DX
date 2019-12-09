@@ -61,7 +61,6 @@ void GamePlayScene::update(float deltaTime)
 	if (this->spaceShooter->getSprite()->isVisible() == false) {
 		Sleep(1500);
 		this->spaceShooter->getSprite()->setVisible(true); 
-		//this->spaceShooter->getSprite()->pause();
 		Director::getInstance()->replaceScene(GameOverScene::createSceneOver());
 	}
 }
