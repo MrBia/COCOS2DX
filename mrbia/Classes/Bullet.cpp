@@ -19,7 +19,7 @@ void Bullet::Init()
 
 void Bullet::Update(float deltaTime)
 {
-	if (this->getSprite()->getPosition().y > this->getHeightScreen() + 10) {
+	if (this->getSprite()->getPosition().y > this->getHeightScreen() + 0) {
 		this->getSprite()->setVisible(false);
 	}
 	else {

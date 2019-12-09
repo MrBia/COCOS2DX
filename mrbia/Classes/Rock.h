@@ -1,6 +1,6 @@
 #pragma once
 #include "Objject.h"
-#define blod 2
+#define BLOOD_ROCK 2
 class Rock : public Objject
 {
 private:

@@ -6,6 +6,8 @@
 #include "Bullet.h"
 #include "GameOverScene.h"
 
+#define NUM_ROCK 2
+
 USING_NS_CC;
 class GamePlayScene : public Scene
 {

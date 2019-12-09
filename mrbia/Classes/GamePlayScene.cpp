@@ -1,7 +1,6 @@
 #include "GamePlayScene.h"
 
 
-
 Scene * GamePlayScene::createGamePlay()
 {
 	return GamePlayScene::create();
@@ -13,6 +12,12 @@ bool GamePlayScene::init()
 		return false;
 	}
 
+	// tileMap
+	auto map = TMXTiledMap::create("Map/newmap.tmx");
+	map->setScale(3);
+	map->setPosition(100, 100);
+	this->addChild(map, 1);
+
 	// background
 	auto background = clone(ResourceManager::getInstance()->loadSpriteById(0));
 	background->setScale(1.5);
@@ -21,7 +26,7 @@ bool GamePlayScene::init()
 
 
 	// initialize number rock
-	this->num_rock = 5;
+	this->num_rock = NUM_ROCK;
 
 
 	// create space shooter

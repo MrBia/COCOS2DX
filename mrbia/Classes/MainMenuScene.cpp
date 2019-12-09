@@ -21,6 +21,9 @@ bool MainMenuScene::init()
 		return false;
 	}
 
+	// background music
+	//CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Sounds/ingame.mp3", true);
+
 	// get size
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 

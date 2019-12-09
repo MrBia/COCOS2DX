@@ -159,6 +159,24 @@ void ResourceManager::load(string fileName)
 				num_sprite--;
 			}
 		}
+		else if (arr_sprite[0] == "#SOUND") {
+			int num_sprite = atoi(arr_sprite[1].c_str());
+
+			while (num_sprite > 0) {
+				i++;                  // id
+				int id = get_ID(arr_source[i]);
+
+				i++;                  // path
+				string path = get_Path(arr_source[i]);
+
+				auto sound = CocosDenshion::SimpleAudioEngine::getInstance();
+				//sound->playEffect(path.c_str());
+
+				m_sounds.insert(pair<int, CocosDenshion::SimpleAudioEngine*>(id, sound));
+
+				num_sprite--;
+			}
+		}
 	}
 }
 
@@ -185,6 +203,11 @@ ui::LoadingBar * ResourceManager::getLoadingBarById(int id)
 RepeatForever * ResourceManager::getSpriteAnimationById(int id)
 {
 	return m_spriteAnimation.at(id);
+}
+
+CocosDenshion::SimpleAudioEngine * ResourceManager::getSoundById(int id)
+{
+	return m_sounds.at(id);
 }
 
 std::vector<std::string> ResourceManager::split(std::string str1, std::string str2)

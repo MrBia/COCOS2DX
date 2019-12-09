@@ -1,6 +1,6 @@
 #include "LoadingScene.h"
-
 #include"GamePlayScene.h"
+
 
 LoadingScene::LoadingScene()
 {
@@ -21,6 +21,12 @@ bool LoadingScene::init()
 	if (!Scene::init()) {
 		return false;
 	}
+
+	// sound
+	auto sound = CocosDenshion::SimpleAudioEngine::getInstance();
+	sound->preloadEffect("Sounds/fire.wav");
+	sound->preloadBackgroundMusic("Sounds/ingame.mp3");
+
 
 	// background
 	auto background = clone(ResourceManager::getInstance()->loadSpriteById(0));
@@ -67,7 +73,7 @@ void LoadingScene::update(float deltaTime)
 {
 	static float count = 0;
 	count += deltaTime;
-	if(count >= 4)
+	if(count >= 3)
 	Director::getInstance()->replaceScene(MainMenuScene::createMainMenu());
 }
 

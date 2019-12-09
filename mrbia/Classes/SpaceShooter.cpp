@@ -1,4 +1,5 @@
 #include "SpaceShooter.h"
+#include "SimpleAudioEngine.h"
 
 
 
@@ -47,7 +48,9 @@ void SpaceShooter::Collision(vector<Objject*> rock)
 				if (isCollision(dis, rock[j], *i)) {
 					(**i).getSprite()->setVisible(false);
 					rock[j]->setBlood(rock[j]->getBlood() - 1);
-					if(rock[j]->getBlood() <= 0) rock[j]->getSprite()->setVisible(false);
+					if (rock[j]->getBlood() <= 0) {
+						rock[j]->getSprite()->setVisible(false);
+					}
 				}
 
 				// plane and rock
@@ -99,16 +102,16 @@ void SpaceShooter::setPosition_Space(float x, float y)
 void SpaceShooter::Init()
 {
 	// initial blood of plane
-	this->setBlood(blodd);
+	this->setBlood(BLOOD_SPACE);
 
 	// initial time shoot
-	time_shoot = 0.2;
+	time_shoot = TIME_SHOOT;
 
 	// create number bullet
-	this->num_bullet = 50;
+	this->num_bullet = NUM_BULLET;
 
 	// initial space shooter speed
-	speed_spaceShooter = 200;
+	speed_spaceShooter = SPEED_SPACESHOOTER;
 
 	// initial x, y space
 	x_space = 0;
@@ -117,8 +120,8 @@ void SpaceShooter::Init()
 
 	// create space shooter
 	this->setSprite(Sprite::create());
-	this->getSprite()->setPosition(this->getWidthScreen() / 2, 30);
 	this->getSprite()->runAction(ResourceManager::getInstance()->getSpriteAnimationById(0));
+	this->getSprite()->setPosition(this->getWidthScreen() / 2, 30);
 	this->getScene()->addChild(this->getSprite());
 
 

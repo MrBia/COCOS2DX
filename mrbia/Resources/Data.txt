@@ -47,3 +47,10 @@ PATH: SpaceShip/5.png
 PATH: SpaceShip/6.png
 PATH: SpaceShip/7.png
 PATH: SpaceShip/8.png
+#SOUND 3
+ID: 0
+PATH: Sounds/confirm.wav
+ID: 1
+PATH: Sounds/fire.wav
+ID: 2
+PATH: Sounds/killed.wav
