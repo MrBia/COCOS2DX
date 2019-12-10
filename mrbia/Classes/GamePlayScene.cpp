@@ -13,10 +13,10 @@ bool GamePlayScene::init()
 	}
 
 	// tileMap
-	auto map = TMXTiledMap::create("Map/newmap.tmx");
+	/*auto map = TMXTiledMap::create("Map/newmap.tmx");
 	map->setScale(3);
 	map->setPosition(100, 100);
-	this->addChild(map, 1);
+	this->addChild(map, 1);*/
 
 	// background
 	auto background = clone(ResourceManager::getInstance()->loadSpriteById(0));
@@ -45,6 +45,12 @@ bool GamePlayScene::init()
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(GamePlayScene::OnTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+	// key board
+	auto keylistener = EventListenerKeyboard::create();
+	keylistener->onKeyPressed = CC_CALLBACK_2(GamePlayScene::OnKeyPressed, this);
+	keylistener->onKeyReleased = CC_CALLBACK_2(GamePlayScene::OnKeyReleased, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(keylistener, this);
 
 	// update
 	scheduleUpdate();
@@ -113,6 +119,62 @@ bool GamePlayScene::OnTouchBegan(Touch * touch, Event * event)
 	spaceShooter->setPosition_Space(tlx, tly);
 
 	return false;
+}
+
+void GamePlayScene::OnKeyPressed(EventKeyboard::KeyCode keycode, Event * event)
+{
+	float speed = 150;
+	switch (keycode)
+	{
+	case EventKeyboard::KeyCode::KEY_LEFT_ARROW: {
+		log("left");
+		spaceShooter->setPosition_Space(-speed, 0);
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW: {
+		log("right");
+		spaceShooter->setPosition_Space(speed, 0);
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_UP_ARROW: {
+		log("up");
+		spaceShooter->setPosition_Space(0, speed);
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_DOWN_ARROW: {
+		log("down");
+		spaceShooter->setPosition_Space(0, -speed);
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void GamePlayScene::OnKeyReleased(EventKeyboard::KeyCode keycode, Event * event)
+{
+	switch (keycode)
+	{
+	case EventKeyboard::KeyCode::KEY_LEFT_ARROW: {
+		log("leftrealese");
+		//spaceShooter->setPosition_Space(tlx, tly);
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW: {
+		log("rightrealese");
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_UP_ARROW: {
+		log("uprealese");
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_DOWN_ARROW: {
+		log("downrealese");
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 Sprite * GamePlayScene::clone(Sprite * sprite)

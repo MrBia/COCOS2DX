@@ -6,7 +6,7 @@
 #include "Bullet.h"
 #include "GameOverScene.h"
 
-#define NUM_ROCK 2
+#define NUM_ROCK 4
 
 USING_NS_CC;
 class GamePlayScene : public Scene
@@ -22,6 +22,8 @@ public:
 	GamePlayScene();
 	~GamePlayScene();
 	bool OnTouchBegan(Touch* touch, Event* event);
+	void OnKeyPressed(EventKeyboard::KeyCode keycode, Event* event);
+	void OnKeyReleased(EventKeyboard::KeyCode keycode, Event* event);
 	Sprite* clone(Sprite* sprite);
 	CREATE_FUNC(GamePlayScene);
 };

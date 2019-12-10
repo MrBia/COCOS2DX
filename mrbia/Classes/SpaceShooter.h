@@ -2,7 +2,7 @@
 #include "Objject.h"
 #include "Bullet.h"
 #define BLOOD_SPACE 5
-#define NUM_BULLET 2
+#define NUM_BULLET 4
 #define SPEED_SPACESHOOTER 200;
 #define TIME_SHOOT 0.2;
 

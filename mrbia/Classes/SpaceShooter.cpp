@@ -24,12 +24,13 @@ float SpaceShooter::getSpeed_spaceShooter()
 void SpaceShooter::Shoot(float deltaTime)
 {
 	// bullet shoot
-
+	
 	std::list<Objject*>::iterator j;
 	for (j = this->m_bullet.begin(); j != this->m_bullet.end(); j++) {
 		if ((**j).getSprite()->isVisible() == false) {
 			(**j).getSprite()->setVisible(true);
 			(**j).getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y);
+			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
 			break;
 		}
 	}
@@ -50,8 +51,10 @@ void SpaceShooter::Collision(vector<Objject*> rock)
 					rock[j]->setBlood(rock[j]->getBlood() - 1);
 					if (rock[j]->getBlood() <= 0) {
 						rock[j]->getSprite()->setVisible(false);
+						//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
 					}
 				}
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
 
 				// plane and rock
 				float dis_plane = this->getDistance(this, rock[j]);

@@ -15,9 +15,9 @@ void Rock::Update(float deltaTime)
 {
 	this->getSprite()->setPosition(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y - speed * deltaTime);
 	
-	if (this->getSprite()->getPosition().y > 0 && this->getSprite()->isVisible() == false) {
-		//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
-	}
+	/*if (this->getSprite()->getPosition().y > 0 && this->getSprite()->isVisible() == false) {
+		CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
+	}*/
 	
 	if (this->getSprite()->getPosition().y < -20 || this->getSprite()->isVisible() == false) {
 		this->getSprite()->setPosition(this->rand_position(), this->getHeightScreen() + 20);
