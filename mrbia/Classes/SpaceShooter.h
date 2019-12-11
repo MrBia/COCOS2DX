@@ -16,6 +16,7 @@ private:
 	float speed_spaceShooter;
 	float time_shoot;
 public:
+	std::list<Objject*> getBullet();
 	float getSpeed_spaceShooter();
 	void Shoot(float deltaTime);
 	void Collision(vector<Objject*> rock);

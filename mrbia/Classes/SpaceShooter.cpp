@@ -16,6 +16,11 @@ Sprite * SpaceShooter::clone(Sprite * sprite)
 
 
 
+std::list<Objject*> SpaceShooter::getBullet()
+{
+	return this->m_bullet;
+}
+
 float SpaceShooter::getSpeed_spaceShooter()
 {
 	return this->speed_spaceShooter;
@@ -122,7 +127,7 @@ void SpaceShooter::Init()
 
 
 	// create space shooter
-	this->setSprite(Sprite::create());
+	this->setSprite(ResourceManager::getInstance()->loadSpriteById(8));
 	this->getSprite()->runAction(ResourceManager::getInstance()->getSpriteAnimationById(0));
 	this->getSprite()->setPosition(this->getWidthScreen() / 2, 30);
 	this->getScene()->addChild(this->getSprite());

@@ -19,11 +19,7 @@ void Rock::Update(float deltaTime)
 		CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Sounds/fire.wav");
 	}*/
 	
-	if (this->getSprite()->getPosition().y < -20 || this->getSprite()->isVisible() == false) {
-		this->getSprite()->setPosition(this->rand_position(), this->getHeightScreen() + 20);
-		this->getSprite()->setVisible(true);
-		this->setBlood(BLOOD_ROCK);
-	}
+	InitAgain();
 }
 
 void Rock::setPosition_Space(float x, float y)
@@ -50,7 +46,20 @@ float Rock::rand_position()
 	return r;
 }
 
+void Rock::InitAgain()
+{
+	if (this->getSprite()->getPosition().y < -20 || this->getSprite()->isVisible() == false) {
+		this->getSprite()->setPosition(this->rand_position(), this->getHeightScreen() + 20);
+		this->getSprite()->setVisible(true);
+		this->setBlood(BLOOD_ROCK);
+	}
+}
+
 
 Rock::~Rock()
+{
+}
+
+void test()
 {
 }

@@ -41,6 +41,7 @@ int Objject::getBlood()
 	return this->blood;
 }
 
+
 Objject::Objject(Scene* scene)
 {
 	this->scene = scene;

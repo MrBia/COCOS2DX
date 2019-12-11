@@ -4,7 +4,7 @@
 
 #include "ResourceManager.h"
 #include "LoadingScene.h"
-//#include "GameOverScene.h"
+#include "GamePlay_2.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -102,8 +102,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
    
 	
 	ResourceManager::getInstance()->Init("Data.txt");
-	auto scene = LoadingScene::createLoaddingScene();
-	//auto scene = GameOverScene::createSceneOver();
+	//auto scene = LoadingScene::createLoaddingScene();
+	auto scene = GamePlay_2::createGameplay();
 
 	// run
     director->runWithScene(scene);
